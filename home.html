@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuizMaster - Ultimate Quiz Challenge Competition</title>
+    <meta
+      name="description"
+      content="Join the ultimate quiz challenge! Compete with the brightest minds, test your knowledge across multiple categories, and win amazing prizes worth ₹50,000. Register now for QuizMaster 2025."
+    />
+    <meta
+      name="keywords"
+      content="quiz competition, online quiz, trivia contest, quiz challenge, knowledge competition, win prizes, quiz tournament"
+    />
+
+    <!-- Open Graph Meta Tags -->
+    <meta
+      property="og:title"
+      content="QuizMaster - Ultimate Quiz Challenge Competition"
+    />
+    <meta
+      property="og:description"
+      content="Join the ultimate quiz challenge! Test your knowledge and win amazing prizes worth ₹50,000. Registration now open!"
+    />
+    <meta property="og:type" content="website" />
+
+    <style>
+      /* CSS Reset and Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        /* Color Palette - HSL Values */
+        --background: 240 100% 98%;
+        --foreground: 240 10% 15%;
+        --card: 0 0% 100%;
+        --card-foreground: 240 10% 15%;
+        --primary: 262 83% 58%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 220 100% 58%;
+        --secondary-foreground: 0 0% 100%;
+        --muted: 240 20% 96%;
+        --muted-foreground: 240 5% 50%;
+        --accent: 45 100% 58%;
+        --accent-foreground: 240 10% 15%;
+        --border: 240 20% 90%;
+        --prize-gold: 45 100% 58%;
+        --prize-silver: 0 0% 75%;
+        --prize-bronze: 28 100% 50%;
+        --success: 142 76% 36%;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", system-ui, -apple-system, sans-serif;
+        background: hsl(var(--background));
+        color: hsl(var(--foreground));
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      /* Header Styles */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background: hsla(var(--card), 0.8);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid hsl(var(--border) / 0.5);
+      }
+
+      .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 64px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .logo-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: hsl(var(--primary));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: hsl(var(--primary-foreground));
+        font-size: 20px;
+      }
+
+      .logo-text {
+        font-size: 1.25rem;
+        font-weight: 700;
+        background: linear-gradient(
+          135deg,
+          hsl(var(--primary)),
+          hsl(var(--secondary))
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .org-text {
+        font-size: 1.25rem;
+        font-weight: 700;
+        background: linear-gradient(
+          135deg,
+          hsl(var(--secondary)),
+          hsl(var(--primary)),
+          hsl(var(--success)),
+          teal
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      nav {
+        display: none;
+        gap: 1.5rem;
+        align-items: center;
+      }
+
+      nav a {
+        color: hsl(var(--foreground));
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      nav a:hover {
+        color: hsl(var(--primary));
+      }
+
+      .mobile-menu-btn {
+        display: block;
+        background: none;
+        border: none;
+        padding: 0.5rem;
+        cursor: pointer;
+        font-size: 1.5rem;
+      }
+
+      .mobile-nav {
+        display: none;
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 1rem 0;
+        border-top: 1px solid hsl(var(--border));
+      }
+
+      .mobile-nav.active {
+        display: flex;
+      }
+
+      .mobile-nav a {
+        padding: 0.5rem 0;
+        color: hsl(var(--foreground));
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      /* Button Styles */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.625rem 1.5rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        border: none;
+        text-decoration: none;
+      }
+
+      .btn-primary {
+        background: hsl(var(--primary));
+        color: hsl(var(--primary-foreground));
+      }
+
+      .btn-primary:hover {
+        opacity: 0.9;
+      }
+
+      .btn-hero {
+        background: hsl(var(--accent));
+        color: hsl(var(--accent-foreground));
+        font-size: 1.125rem;
+        padding: 0.75rem 2rem;
+        box-shadow: 0 4px 12px hsl(var(--primary) / 0.4);
+      }
+
+      .btn-hero:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 16px hsl(var(--primary) / 0.6);
+      }
+
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 64px;
+        position: relative;
+        overflow: hidden;
+        background-image: url("hero-bg1.jpg");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .hero-container {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.61),
+          rgba(255, 255, 255, 0.5),
+          rgba(255, 255, 255, 0.575)
+        );
+      }
+      .hero-content {
+        position: relative;
+        text-align: center;
+        max-width: 900px;
+        z-index: 2; /* Ensure content is above the gradient overlay */
+      }
+
+      .hero h1,
+      .hero p,
+      .badge,
+      .btn-hero {
+        position: relative;
+        z-index: 2;
+        top: 20px;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        border-radius: 9999px;
+        background: hsl(var(--primary) / 0.1);
+        border: 1px solid hsl(var(--primary) / 0.2);
+        margin-bottom: 1.5rem;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .hero h1 {
+        font-size: clamp(2rem, 8vw, 4.5rem);
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+      }
+
+      .gradient-text {
+        background: linear-gradient(
+          135deg,
+          hsl(var(--primary)),
+          hsl(var(--secondary))
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+
+      .hero p {
+        font-size: 1.125rem;
+        color: hsl(var(--muted-foreground));
+        margin-bottom: 2rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-top: 4rem;
+      }
+
+      .stat-card {
+        background: hsla(var(--card), 0.8);
+        backdrop-filter: blur(12px);
+        border: 1px solid hsl(var(--border) / 0.5);
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+      }
+
+      .stat-icon {
+        width: 2rem;
+        height: 2rem;
+        margin: 0 auto 0.75rem;
+        color: hsl(var(--primary));
+      }
+
+      .stat-number {
+        font-size: 1.875rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+      }
+
+      .stat-label {
+        font-size: 0.875rem;
+        color: hsl(var(--muted-foreground));
+      }
+
+      /* Section Styles */
+      section {
+        padding: 5rem 0;
+      }
+
+      .section-alt {
+        background: hsl(var(--muted) / 0.3);
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .section-header h2 {
+        font-size: clamp(2rem, 5vw, 3rem);
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .section-header .primary-text {
+        color: hsl(var(--primary));
+      }
+
+      .section-header p {
+        font-size: 1.125rem;
+        color: hsl(var(--muted-foreground));
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      /* Card Styles */
+      .card {
+        background: hsl(var(--card));
+        border: 1px solid hsl(var(--border));
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        transition: all 0.3s;
+      }
+      .prize-card {
+        background: hsl(var(--card));
+        border: 1px solid hsl(var(--border));
+        border-radius: 0.75rem;
+        transition: all 0.3s;
+        padding-bottom: 30px;
+      }
+
+      .card:hover {
+        box-shadow: 0 8px 24px hsl(var(--foreground) / 0.1);
+      }
+
+      .grid {
+        display: grid;
+        gap: 1.5rem;
+      }
+
+      .grid-2 {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+
+      .card-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+      }
+
+      .card-icon.primary {
+        background: hsl(var(--primary) / 0.1);
+        color: hsl(var(--primary));
+      }
+
+      .card-icon.secondary {
+        background: hsl(var(--secondary) / 0.1);
+        color: hsl(var(--secondary));
+      }
+
+      .card-icon.accent {
+        background: hsl(var(--accent) / 0.1);
+        color: hsl(var(--accent));
+      }
+
+      .card-icon.success {
+        background: hsl(var(--success) / 0.1);
+        color: hsl(var(--success));
+      }
+
+      .card h3 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .card p {
+        color: hsl(var(--muted-foreground));
+        font-size: 0.875rem;
+      }
+
+      /* Rules Section */
+      .rule-item {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .check-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: hsl(var(--primary) / 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: hsl(var(--primary));
+      }
+
+      .important-note {
+        margin-top: 2rem;
+        padding: 1.5rem;
+        background: hsl(var(--accent) / 0.1);
+        border-left: 4px solid hsl(var(--accent));
+        border-radius: 0.5rem;
+      }
+
+      /* Prizes Section */
+      .prize-card {
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+      }
+
+      .prize-card.winner {
+        transform: translateY(-1rem);
+      }
+
+      .prize-top-bar {
+        height: 8px;
+        margin-bottom: 1.5rem;
+      }
+
+      .gold-gradient {
+        background: linear-gradient(
+          135deg,
+          hsl(var(--prize-gold)),
+          hsl(28 100% 50%)
+        );
+      }
+
+      .silver-gradient {
+        background: linear-gradient(
+          135deg,
+          hsl(var(--prize-silver)),
+          hsl(0 0% 60%)
+        );
+      }
+
+      .bronze-gradient {
+        background: linear-gradient(
+          135deg,
+          hsl(var(--prize-bronze)),
+          hsl(20 100% 45%)
+        );
+      }
+
+      .prize-icon {
+        width: 64px;
+        height: 64px;
+        margin: 0 auto 1rem;
+      }
+
+      .prize-place {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+
+      .prize-amount {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: hsl(var(--primary));
+        margin-bottom: 1.5rem;
+      }
+
+      .prize-extras {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        color: hsl(var(--muted-foreground));
+      }
+
+      .prize-extra-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      /* Footer */
+      footer {
+        background: hsl(var(--muted) / 0.95);
+        border-top: 1px solid hsl(var(--border));
+        padding: 4rem 1rem 2rem;
+        color: hsl(var(--muted-foreground));
+        font-size: 0.95rem;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 2.5rem;
+        margin-bottom: 2.5rem;
+      }
+      .footer h3 {
+        font-size: 1.15rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: hsl(var(--foreground));
+      }
+
+      .footer p {
+        line-height: 1.7;
+      }
+
+      .quik-ul > li {
+        list-style: none;
+      }
+
+      .quik-li {
+        margin-bottom: 0.65rem;
+        color: hsl(var(--muted-foreground));
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .quik-ul > li a:hover {
+        color: hsl(var(--primary));
+        transform: translateX(3px);
+        box-shadow: 0 1px 4px hsl(var(--muted-foreground) / 0.005);
+      }
+
+      .contact-list li {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: hsl(var(--muted-foreground));
+        transition: all 0.3s ease;
+      }
+      .contact-list li a {
+        color: hsl(var(--muted-foreground));
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+      .contact-icon {
+        font-size: 1.1rem;
+        padding: 5px;
+        color: hsl(var(--primary));
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .social-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 1.2rem;
+        color: hsl(var(--muted-foreground));
+      }
+
+      .social-icon:hover {
+        background: hsl(var(--primary));
+        color: hsl(var(--primary-foreground));
+        transform: translateY(-4px) scale(1.1);
+        box-shadow: 0 6px 18px hsl(var(--primary) / 0.35);
+      }
+
+      .footer-bottom {
+        padding-top: 2rem;
+        border-top: 1px solid hsl(var(--border));
+        text-align: center;
+        font-size: 0.9rem;
+        color: hsl(var(--muted-foreground));
+      }
+
+      .footer-tagline {
+        margin-top: 0.75rem;
+        font-size: 0.9rem;
+        color: hsl(var(--muted-foreground));
+      }
+
+      /* Animations */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      @keyframes glow {
+        from {
+          filter: drop-shadow(0 0 20px hsl(var(--primary) / 0.4));
+        }
+        to {
+          filter: drop-shadow(0 0 30px hsl(var(--primary) / 0.6));
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .logo > span {
+          font-size: 15px;
+        }
+        .logo > div {
+          font-size: 12px;
+          width: 20px;
+          height: 20px;
+        }
+        .org-text {
+          font-size: 15px;
+        }
+        .badge {
+          top: 0px;
+        }
+      }
+
+      /* Icon Styles */
+      .icon {
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        vertical-align: middle;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <a href="#home" class="logo">
+            <div class="logo-icon">🏆</div>
+            <span class="logo-text">Tech Genius Olympiyad</span>
+          </a>
+
+          <span class="org-text">TISHHA </span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="hero-container"></div>
+      <div class="container">
+        <div class="hero-content">
+          <div class="badge">
+            <span>✨</span>
+            <span
+              style="
+                font-size: 0.875rem;
+                font-weight: 600;
+                color: hsl(var(--primary));
+              "
+              >Registration Now Open</span
+            >
+          </div>
+          <h1>
+            Join the Ultimate<br />
+            <span class="gradient-text">Quiz Challenge!</span>
+          </h1>
+          <p style="color: #000" class="p4">
+            Test your knowledge, compete with the brightest minds, and win
+            amazing prizes. Are you ready to prove you're the ultimate quiz
+            master?
+          </p>
+          <a href="https://tishha.com" class="btn btn-hero">Register Now</a>
+        </div>
+      </div>
+    </section>
+    <section id="prizes" class="section-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2>Amazing <span class="primary-text">Prizes</span></h2>
+          <p>
+            Top performers will be rewarded with cash prizes, trophies, and
+            recognition. Make your mark in quiz history!
+          </p>
+        </div>
+
+        <div class="grid grid-3">
+          <div class=".prize-card prize-card winner">
+            <div class="prize-top-bar gold-gradient"></div>
+            <div class="prize-icon">🏆</div>
+            <div class="prize-place">1st Place</div>
+            <div class="prize-amount">₹10,000</div>
+            <div class="prize-extras">
+              <div class="prize-extra-item">
+                <span>🎁</span>
+                <span>Golden Trophy</span>
+              </div>
+              <div class="prize-extra-item">
+                <span>🎁</span>
+                <span>Medal</span>
+              </div>
+              <div class="prize-extra-item">
+                <span>🎁</span>
+                <span>Certificate of Excellence</span>
+              </div>
+              <div class="prize-extra-item">
+                <span>🎁</span>
+                <span>QuizMaster Title</span>
+              </div>
+            </div>
+          </div>
+
+          <div class=".prize-card prize-card">
+            <div class="prize-top-bar silver-gradient"></div>
+            <div class="prize-icon">🥈</div>
+            <div class="prize-place">2nd Place</div>
+            <div class="prize-amount">₹6,000</div>
+            <div class="prize-extras">
+              <div class="prize-extra-item">
+                <span>🎁</span>
+                <span>Silver Trophy</span>
+              </div>
+              <div class="prize-extra-item">
+                <span>🎁</span>
+                <span>Medal</span>
+              </div>
+              <div class="prize-extra-item">
+                <span>🎁</span>
+                <span>Certificate of Achievement</span>
+              </div>
+              <div class="prize-extra-item">
+                <span>🎁</span>
+                <span>Quiz Champion Title</span>
+              </div>
+            </div>
+          </div>
+
+          <div class=".prize-card prize-card">
+            <div class="prize-top-bar bronze-gradient"></div>
+            <div class="prize-icon">🥉</div>
+            <div class="prize-place">3rd Place</div>
+            <div class="prize-amount">₹3,000</div>
+            <div class="prize-extras">
+              <div class="prize-extra-item">
+                <span>🎁</span>
+                <span>Bronze Trophy</span>
+              </div>
+              <div class="prize-extra-item">
+                <span>🎁</span>
+                <span>Medal</span>
+              </div>
+              <div class="prize-extra-item">
+                <span>🎁</span>
+                <span>Certificate of Merit</span>
+              </div>
+              <div class="prize-extra-item">
+                <span>🎁</span>
+                <span>Quiz Expert Title</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-2" style="margin-top: 2rem">
+          <div class="card">
+            <h3 style="display: flex; align-items: center; gap: 0.5rem">
+              <span style="color: hsl(var(--accent))">🏅</span>
+              Consolation Prizes
+            </h3>
+            <p>
+              Participants ranking 4th to 10th will receive certificates of
+              participation and exciting gift hampers worth ₹1,000 each.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 style="display: flex; align-items: center; gap: 0.5rem">
+              <span style="color: hsl(var(--secondary))">🏆</span>
+              Special Recognition
+            </h3>
+            <p>
+              All finalists will be featured on our website and social media.
+              Top performers may receive opportunities for future quiz events.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2>About the <span class="primary-text">Competition</span></h2>
+          <p>
+            Get ready for the most exciting quiz competition of the year!
+            Challenge yourself across multiple categories and showcase your
+            knowledge.
+          </p>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="card">
+            <div class="card-icon primary">📅</div>
+            <h3>Event Dates</h3>
+            <p>
+              Preliminary Round: <strong>March 15, 2025</strong><br />
+              Grand Finale: <strong>March 22, 2025</strong>
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon secondary">👥</div>
+            <h3>Eligibility</h3>
+            <p>
+              Open to:
+              <br />
+              <b>School Students</b>
+              <br />
+              <b>All College Students</b>
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon accent">⏰</div>
+            <h3>Format</h3>
+            <p>
+              Online preliminary round followed by offline grand finale.
+              Multiple choice and rapid-fire rounds.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon success">🎯</div>
+            <h3>Categories</h3>
+            <p>
+              General Knowledge, Science & Tech, History, Sports, Entertainment,
+              and Current Affairs.
+            </p>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top: 3rem; text-align: center">
+          <h3 style="font-size: 1.5rem; margin-bottom: 2rem">
+            Why Participate?
+          </h3>
+          <div class="grid grid-3">
+            <div>
+              <div style="font-size: 3rem; margin-bottom: 0.5rem">🏆</div>
+              <h4 style="font-weight: 600; margin-bottom: 0.5rem">Win Big</h4>
+              <p style="font-size: 0.875rem">
+                Amazing prizes worth ₹50,000+ for top performers
+              </p>
+            </div>
+            <div>
+              <div style="font-size: 3rem; margin-bottom: 0.5rem">🎓</div>
+              <h4 style="font-weight: 600; margin-bottom: 0.5rem">
+                Learn & Grow
+              </h4>
+              <p style="font-size: 0.875rem">
+                Enhance your knowledge across diverse topics
+              </p>
+            </div>
+            <div>
+              <div style="font-size: 3rem; margin-bottom: 0.5rem">🤝</div>
+              <h4 style="font-weight: 600; margin-bottom: 0.5rem">Network</h4>
+              <p style="font-size: 0.875rem">
+                Connect with fellow quiz enthusiasts nationwide
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rules Section -->
+    <section id="rules">
+      <div class="container">
+        <div class="section-header">
+          <h2>Rules & <span class="primary-text">Guidelines</span></h2>
+          <p>
+            Please read these rules carefully before registering. Fair play
+            ensures a great experience for everyone!
+          </p>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="card">
+            <div class="rule-item">
+              <div class="check-icon">✓</div>
+              <div>
+                <h3>Registration</h3>
+                <p>
+                  Complete the registration form with accurate information.
+                  Registration closes on March 10, 2025.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="rule-item">
+              <div class="check-icon">✓</div>
+              <div>
+                <h3>Preliminary Round</h3>
+                <p>
+                  Online multiple-choice test with 50 questions. Time limit: 45
+                  minutes. Top 50 participants advance to the finale.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="rule-item">
+              <div class="check-icon">✓</div>
+              <div>
+                <h3>Grand Finale</h3>
+                <p>
+                  Offline event with multiple rounds including rapid-fire and
+                  buzzer rounds. Location: Mumbai Convention Center.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="rule-item">
+              <div class="check-icon">✓</div>
+              <div>
+                <h3>Conduct</h3>
+                <p>
+                  No external help or use of electronic devices during the quiz.
+                  Any form of cheating will result in immediate
+                  disqualification.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="rule-item">
+              <div class="check-icon">✓</div>
+              <div>
+                <h3>Scoring</h3>
+                <p>
+                  Each correct answer awards 2 points. No negative marking in
+                  preliminary round. Negative marking applies in finale.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="rule-item">
+              <div class="check-icon">✓</div>
+              <div>
+                <h3>Prizes</h3>
+                <p>
+                  Prizes will be awarded immediately after the finale. Winners
+                  must present valid ID for prize collection.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="rule-item">
+              <div class="check-icon">✓</div>
+              <div>
+                <h3>Communication</h3>
+                <p>
+                  All updates will be sent via email and SMS. Check your inbox
+                  regularly for important announcements.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="rule-item">
+              <div class="check-icon">✓</div>
+              <div>
+                <h3>Disputes</h3>
+                <p>
+                  Quiz master's decision is final. Any disputes should be raised
+                  immediately during the event.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="important-note">
+          <p style="font-size: 0.875rem; font-weight: 500">
+            <strong>Important:</strong> By registering for this competition, you
+            agree to abide by all the rules and guidelines mentioned above.
+            Violation of any rule may result in disqualification.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="logo" style="margin-bottom: 1rem">
+              <div class="logo-icon">🏆</div>
+              <span style="font-size: 1.25rem; font-weight: 600"
+                >Tech Genius Olympiyad</span
+              >
+            </div>
+            <p
+              style="
+                font-size: 0.875rem;
+                color: hsl(var(--muted-foreground));
+                line-height: 1.6;
+              "
+            >
+              The ultimate platform for quiz enthusiasts. Challenge yourself,
+              compete with others, and win amazing prizes!
+            </p>
+          </div>
+
+          <div>
+            <h3>Contact Us</h3>
+            <ul class="contact-list">
+              <li>
+                <a href="https://tishha.com/">
+                  <span class="contact-icon">🌐</span>
+                  <span>www.tishha.com</span>
+                </a>
+              </li>
+              <li>
+                <a href="mailto:contact@tishha.com">
+                  <span class="contact-icon">📧</span>
+                  <span>contact@tishha.com</span>
+                </a>
+              </li>
+              <li>
+                <a href="tel:+91960054444">
+                  <span class="contact-icon">📞</span>
+                  <span>+91 96900 54444</span>
+                </a>
+              </li>
+              <li>
+                <span class="contact-icon">📍</span>
+                <span style="font-size: 13px"
+                  >Shop No. - 15, Ace Aspire, Plot No. - GH-02A, Sector -
+                  Techzone-4, Greater Noida, U.P., India - 201306</span
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3>Follow Us</h3>
+            <div class="social-icons">
+              <a
+                href="https://www.facebook.com/profile.php?id=100064162719795"
+                class="social-icon"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="icon"
+                >
+                  <path
+                    d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                  ></path>
+                </svg>
+              </a>
+              <a
+                href="https://x.com/TishhaServices"
+                class="social-icon"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="X"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M18.244 2H21.5l-7.36 8.4L22 22h-5.934l-4.66-6.101L6.02 22H2.757l7.89-9L2 2h6.09l4.19 5.583L18.244 2zM17.202 20h1.523L7.054 4H5.42l11.782 16z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://www.instagram.com/tishhaconsultantsllp"
+                class="social-icon"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="icon"
+                >
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path
+                    d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                  ></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/tishha-consultants-llp-5977a2322/"
+                class="social-icon"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="icon"
+                >
+                  <path
+                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                  ></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </a>
+            </div>
+            <p class="footer-tagline">
+              Stay updated with our latest quiz events and challenges!
+            </p>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>
+            © <span id="current-year"></span> TISHHA CONSULTANCY LLP. All rights
+            reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+      // Mobile Menu Toggle
+      const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+      const mobileNav = document.getElementById("mobile-nav");
+
+      mobileMenuBtn.addEventListener("click", () => {
+        mobileNav.classList.toggle("active");
+        mobileMenuBtn.textContent = mobileNav.classList.contains("active")
+          ? "✕"
+          : "☰";
+      });
+
+      // Close mobile menu when clicking on links
+      const mobileLinks = mobileNav.querySelectorAll("a");
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileNav.classList.remove("active");
+          mobileMenuBtn.textContent = "☰";
+        });
+      });
+
+      // Set current year
+      document.getElementById("current-year").textContent =
+        new Date().getFullYear();
+
+      // Smooth scroll for all anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
