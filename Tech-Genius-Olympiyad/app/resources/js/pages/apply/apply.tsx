@@ -30,7 +30,7 @@ const Apply = ({ status }: ApplyProps) => {
             Tech Genius Olympiyad 2025
           </h1>
           <p className="text-lg text-blue-100 mb-6">
-            Challenge your mind. Compete with the best. Win exciting prizes worth ₹50,000!
+            Challenge your mind. Compete with the best. Win exciting prizes worth ₹10,000!
           </p>
           <ul className="text-sm text-blue-100 space-y-2 text-left">
             <li>💡 Multiple quiz categories</li>
